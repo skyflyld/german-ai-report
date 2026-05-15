@@ -21,11 +21,10 @@
     --accent-green: #6bae85;
     --accent-purple: #9b7ec4;
     --accent-teal: #5ba8a0;
-    --accent-orange: #e67e22;
     --glow: radial-gradient(ellipse at 50% -20%, rgba(201,168,76,0.12) 0%, transparent 70%);
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; scroll-snap-type: y proximity; }
+  html { scroll-behavior:smooth; }
   body {
     background: var(--bg);
     color: var(--text);
@@ -33,6 +32,7 @@
     line-height: 1.6;
     overflow-x: hidden;
   }
+  /* Top Nav */
   #topnav {
     position: fixed; top:0; left:0; right:0; z-index:100;
     background: rgba(10,10,15,0.92);
@@ -54,83 +54,156 @@
   section {
     min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
     align-items: center; padding: 5rem 3rem; position: relative;
-    scroll-snap-align: start;
   }
   section::before {
     content:''; position:absolute; top:0; left:0; right:0; bottom:0;
     background: var(--glow); pointer-events:none;
   }
-  .section-inner { max-width: 1100px; width:100%; position:relative; z-index:1; }
+  .section-inner { max-width: 1200px; width:100%; position:relative; z-index:1; }
 
-  #cover { text-align:center; padding-top:6rem; }
-  #cover .pretitle { font-size:0.9rem; color:var(--gold); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.5rem; }
-  #cover h1 { font-size:3.2rem; font-weight:700; line-height:1.2; margin-bottom:1rem; background:linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-  #cover .subtitle-de { font-size:1.3rem; color:var(--text-dim); margin-bottom:0.8rem; font-style:italic; }
-  #cover .subtitle { font-size:1.1rem; color:var(--text-dim); margin-bottom:2.5rem; }
-  #cover .meta { font-size:0.85rem; color:var(--text-dim); opacity:0.7; }
+  /* Cover */
+  #cover { text-align:center; min-height:100vh; padding:2rem; }
+  #cover .pretitle { font-size:1rem; color:var(--gold); letter-spacing:0.25em; text-transform:uppercase; margin-bottom:0.5rem; }
+  #cover h1 { font-size:3.8rem; font-weight:700; line-height:1.15; margin-bottom:1rem; background:linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  #cover .subtitle-de { font-size:1.5rem; color:var(--text-dim); margin-bottom:0.8rem; font-style:italic; }
+  #cover .subtitle { font-size:1.2rem; color:var(--text-dim); margin-bottom:2.5rem; }
+  #cover .meta { font-size:0.9rem; color:var(--text-dim); opacity:0.7; }
 
-  .sec-num { font-size:0.8rem; color:var(--gold); letter-spacing:0.25em; text-transform:uppercase; margin-bottom:0.3rem; }
-  .sec-title { font-size:2.4rem; font-weight:700; margin-bottom:0.3rem; }
-  .sec-title-de { font-size:1.1rem; color:var(--text-dim); margin-bottom:1.5rem; font-style:italic; }
+  .sec-num { font-size:0.85rem; color:var(--gold); letter-spacing:0.25em; text-transform:uppercase; margin-bottom:0.3rem; }
+  .sec-title { font-size:2.6rem; font-weight:700; margin-bottom:0.3rem; }
+  .sec-title-de { font-size:1.2rem; color:var(--text-dim); margin-bottom:1.5rem; font-style:italic; }
   .sec-divider { width:60px; height:2px; background:linear-gradient(90deg,var(--gold),transparent); margin-bottom:2rem; }
 
+  /* Goal card */
   .goal-card {
     background: rgba(201,168,76,0.05); border:1px solid var(--border);
     border-left:3px solid var(--gold); border-radius:8px; padding:1rem 1.5rem;
-    margin-bottom:2rem; font-size:0.95rem;
+    margin-bottom:2rem; font-size:1rem;
   }
   .goal-card .goal-label { color:var(--gold); font-weight:600; margin-bottom:0.3rem; }
   .goal-card .goal-de { color:var(--text-dim); font-size:0.85rem; font-style:italic; margin-bottom:0.2rem; }
 
+  /* Comparison */
   .compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
   .compare-box { border-radius:12px; padding:2rem; border:1px solid var(--border); }
   .compare-box.ist { border-top:3px solid var(--red-light); background:rgba(192,57,43,0.06); }
   .compare-box.soll { border-top:3px solid var(--accent-green); background:rgba(107,174,133,0.06); }
-  .compare-box h3 { font-size:1.3rem; margin-bottom:1.2rem; }
+  .compare-box h3 { font-size:1.4rem; margin-bottom:1.2rem; }
   .compare-box.ist h3 { color:var(--red-light); }
   .compare-box.soll h3 { color:var(--accent-green); }
   .compare-box ul { list-style:none; }
-  .compare-box li { padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:0.95rem; }
+  .compare-box li { padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:1rem; }
   .compare-box.ist li::before { content:'✕ '; color:var(--red-light); }
   .compare-box.soll li::before { content:'✓ '; color:var(--accent-green); }
 
   .pain-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:1rem; }
-  .pain-card { background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:1.5rem; transition:all 0.3s; }
+  .pain-card { background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:1.8rem; transition:all 0.3s; }
   .pain-card:hover { border-color:var(--border-strong); transform:translateY(-3px); box-shadow:0 8px 30px rgba(201,168,76,0.08); }
-  .pain-card .pain-icon { font-size:2rem; margin-bottom:0.8rem; }
-  .pain-card h4 { color:var(--gold); font-size:1rem; margin-bottom:0.5rem; }
-  .pain-card p { color:var(--text-dim); font-size:0.9rem; }
+  .pain-card .pain-icon { font-size:2.2rem; margin-bottom:0.8rem; }
+  .pain-card h4 { color:var(--gold); font-size:1.1rem; margin-bottom:0.5rem; }
+  .pain-card p { color:var(--text-dim); font-size:0.95rem; }
 
-  .student-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; }
-  .student-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:1.5rem; text-align:center; transition:all 0.3s; position:relative; overflow:hidden; }
-  .student-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
-  .student-card.s1::before { background:var(--accent-blue); }
-  .student-card.s2::before { background:var(--gold); }
-  .student-card.s3::before { background:var(--accent-purple); }
-  .student-card.s4::before { background:var(--accent-teal); }
-  .student-card:hover { transform:translateY(-4px); border-color:var(--border-strong); box-shadow:0 10px 35px rgba(201,168,76,0.1); }
-  .student-card .pct { font-size:2.5rem; font-weight:700; margin:0.8rem 0; }
-  .student-card.s1 .pct { color:var(--accent-blue); }
-  .student-card.s2 .pct { color:var(--gold); }
-  .student-card.s3 .pct { color:var(--accent-purple); }
-  .student-card.s4 .pct { color:var(--accent-teal); }
-  .student-card .label { font-weight:600; font-size:1rem; margin-bottom:0.3rem; }
-  .student-card .label-de { font-size:0.8rem; color:var(--text-dim); font-style:italic; margin-bottom:0.8rem; }
-  .student-card .traits { font-size:0.82rem; color:var(--text-dim); }
+  /* FLIP CARDS */
+  .flip-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; perspective:1200px; }
+  .flip-grid.cols2 { grid-template-columns:repeat(2,1fr); }
+  .flip-grid.cols4 { grid-template-columns:repeat(4,1fr); }
+  .flip-grid.spread { grid-template-columns:1fr; max-width:800px; margin:0 auto; }
 
+  .flip-card {
+    aspect-ratio:16/11; position:relative; cursor:pointer;
+    transition:transform 0.6s cubic-bezier(0.23,1,0.32,1);
+    transform-style:preserve-3d;
+  }
+  .flip-card.flipped { transform:rotateY(180deg); }
+
+  .flip-card .face {
+    position:absolute; inset:0; backface-visibility:hidden;
+    border-radius:10px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    border:1px solid var(--border); overflow:hidden;
+  }
+  .flip-card .front {
+    background:var(--bg-card); padding:1.2rem; text-align:center;
+    transition:all 0.3s;
+  }
+  .flip-card:hover .front { border-color:var(--border-strong); }
+  .flip-card .front .q-icon { font-size:2.5rem; margin-bottom:0.8rem; }
+  .flip-card .front .q-text { font-size:0.95rem; color:var(--text-dim); }
+  .flip-card .front .q-hint { font-size:0.75rem; color:var(--gold); margin-top:0.8rem; opacity:0.6; }
+
+  .flip-card .back {
+    transform:rotateY(180deg); background:var(--bg-card);
+    padding:0; border-color:var(--border-strong);
+  }
+  .flip-card .back img { width:100%; height:100%; object-fit:contain; display:block; }
+  .flip-card .back .cap {
+    position:absolute; bottom:0; left:0; right:0;
+    background:rgba(0,0,0,0.7); padding:0.4rem 0.8rem;
+    font-size:0.8rem; color:var(--text-dim); text-align:center;
+  }
+
+  /* Stats counters */
+  .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; margin:1.5rem 0; }
+  .stat-card {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:10px;
+    padding:1.8rem; text-align:center; transition:all 0.3s;
+  }
+  .stat-card:hover { border-color:var(--border-strong); transform:translateY(-2px); }
+  .stat-card .big { font-size:3rem; font-weight:700; color:var(--gold); }
+  .stat-card .lbl { font-size:0.9rem; color:var(--text-dim); margin-top:0.3rem; }
+  .stat-card .trend { font-size:0.75rem; margin-top:0.2rem; }
+  .stat-card .trend.up { color:var(--accent-green); }
+
+  /* Student cards (flip style) */
+  .student-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; perspective:1200px; }
+  .student-card {
+    aspect-ratio:4/5; position:relative; cursor:pointer;
+    transition:transform 0.6s cubic-bezier(0.23,1,0.32,1);
+    transform-style:preserve-3d;
+  }
+  .student-card.flipped { transform:rotateY(180deg); }
+  .student-card .face {
+    position:absolute; inset:0; backface-visibility:hidden;
+    border-radius:12px; padding:1.5rem; display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    border:1px solid var(--border); overflow:hidden; text-align:center;
+  }
+  .student-card .front { background:var(--bg-card); }
+  .student-card .front .pct { font-size:2.8rem; font-weight:700; margin:0.5rem 0; }
+  .student-card .front .label { font-weight:600; font-size:1rem; margin-bottom:0.3rem; }
+  .student-card .front .label-de { font-size:0.8rem; color:var(--text-dim); font-style:italic; margin-bottom:0.5rem; }
+  .student-card .back {
+    transform:rotateY(180deg); background:var(--bg-card);
+    border-top:3px solid; font-size:0.88rem; text-align:left; align-items:flex-start;
+    justify-content:flex-start; padding:1.2rem; gap:0.5rem;
+  }
+  .student-card .back .bt { font-weight:600; margin-bottom:0.3rem; }
+  .student-card .back .bd { color:var(--text-dim); font-size:0.82rem; line-height:1.5; }
+  .student-card .back .bq { font-size:0.78rem; color:var(--gold); font-style:italic; margin-top:0.5rem; }
+
+  .student-card.s1 .front .pct { color:var(--accent-blue); }
+  .student-card.s2 .front .pct { color:var(--gold); }
+  .student-card.s3 .front .pct { color:var(--accent-purple); }
+  .student-card.s4 .front .pct { color:var(--accent-teal); }
+
+  /* Flow */
   .flow-row { display:flex; align-items:center; justify-content:center; gap:0.8rem; flex-wrap:wrap; margin:1.5rem 0; }
-  .flow-step { background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:1rem 1.5rem; text-align:center; transition:all 0.3s; min-width:120px; }
-  .flow-step:hover { border-color:var(--gold); transform:scale(1.05); }
-  .flow-step .step-icon { font-size:1.5rem; margin-bottom:0.4rem; }
-  .flow-step .step-label { font-size:0.9rem; font-weight:600; }
+  .flow-step {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:10px;
+    padding:1rem 1.5rem; text-align:center; transition:all 0.3s; min-width:130px;
+  }
+  .flow-step:hover { border-color:var(--gold); transform:scale(1.05) translateY(-3px); box-shadow:0 8px 25px rgba(201,168,76,0.1); }
+  .flow-step .step-icon { font-size:1.8rem; margin-bottom:0.4rem; }
+  .flow-step .step-label { font-size:0.95rem; font-weight:600; }
   .flow-step .step-de { font-size:0.75rem; color:var(--text-dim); font-style:italic; }
-  .flow-arrow { color:var(--gold); font-size:1.5rem; }
+  .flow-arrow { color:var(--gold); font-size:1.8rem; animation:pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
   .syllabus-table { width:100%; border-collapse:collapse; margin-top:1rem; }
-  .syllabus-table th, .syllabus-table td { padding:0.75rem 1rem; text-align:left; border-bottom:1px solid var(--border); font-size:0.9rem; }
+  .syllabus-table th, .syllabus-table td { padding:0.75rem 1rem; text-align:left; border-bottom:1px solid var(--border); font-size:0.95rem; }
   .syllabus-table th { color:var(--gold); font-weight:600; }
   .syllabus-table tr:hover td { background:rgba(201,168,76,0.05); }
-  .syllabus-table .ai-badge { color:var(--accent-teal); font-size:0.78rem; }
+  .syllabus-table .ai-badge { color:var(--accent-teal); font-size:0.8rem; }
 
   .agent-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
   .agent-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:1.8rem; transition:all 0.3s; position:relative; overflow:hidden; }
@@ -139,11 +212,11 @@
   .agent-card.a2::before { background:var(--accent-purple); }
   .agent-card.a3::before { background:var(--accent-green); }
   .agent-card:hover { transform:translateY(-4px); border-color:var(--border-strong); box-shadow:0 10px 35px rgba(201,168,76,0.1); }
-  .agent-card .agent-icon { font-size:2.2rem; margin-bottom:0.8rem; }
-  .agent-card h4 { font-size:1.1rem; margin-bottom:0.3rem; }
+  .agent-card .agent-icon { font-size:2.5rem; margin-bottom:0.8rem; }
+  .agent-card h4 { font-size:1.15rem; margin-bottom:0.3rem; }
   .agent-card .agent-de { font-size:0.85rem; color:var(--text-dim); font-style:italic; margin-bottom:1rem; }
-  .agent-card .agent-items { list-style:none; font-size:0.88rem; }
-  .agent-card .agent-items li { padding:0.3rem 0; color:var(--text-dim); }
+  .agent-card .agent-items { list-style:none; font-size:0.9rem; }
+  .agent-card .agent-items li { padding:0.35rem 0; color:var(--text-dim); }
   .agent-card .agent-items li::before { content:'▸ '; color:var(--gold); }
   .agent-card .agent-tag { display:inline-block; background:rgba(201,168,76,0.1); color:var(--gold); padding:0.2rem 0.6rem; border-radius:4px; font-size:0.75rem; margin-bottom:0.8rem; }
 
@@ -154,46 +227,45 @@
   .project-card h4 { color:var(--gold); margin-bottom:0.5rem; }
   .project-card .pj-de { font-size:0.85rem; color:var(--text-dim); font-style:italic; margin-bottom:1rem; }
   .project-card .pj-visual { background:var(--accent-teal); color:#fff; font-size:0.75rem; padding:0.25rem 0.6rem; border-radius:4px; display:inline-block; margin-bottom:0.8rem; }
+
   .progress-steps { display:flex; align-items:center; gap:0.4rem; margin-top:1rem; flex-wrap:wrap; }
-  .progress-steps .ps { padding:0.4rem 0.8rem; border-radius:6px; font-size:0.78rem; background:var(--bg-card); border:1px solid var(--border); color:var(--text-dim); }
-  .progress-steps .ps.active { border-color:var(--gold); color:var(--gold); background:rgba(201,168,76,0.08); }
+  .progress-steps .ps { padding:0.4rem 0.8rem; border-radius:6px; font-size:0.82rem; background:var(--bg-card); border:1px solid var(--border); color:var(--text-dim); transition:all 0.3s; }
+  .progress-steps .ps:hover { border-color:var(--gold); color:var(--gold); background:rgba(201,168,76,0.08); transform:translateY(-2px); }
   .progress-steps .arr { color:var(--text-dim); font-size:0.7rem; }
-
-  /* Stats row */
-  .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin:1.5rem 0; }
-  .stat-card { background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:1.5rem; text-align:center; }
-  .stat-card .big { font-size:2.8rem; font-weight:700; color:var(--gold); }
-  .stat-card .lbl { font-size:0.85rem; color:var(--text-dim); margin-top:0.3rem; }
-
-  .img-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.5rem 0; }
-  .img-grid .img-card { background:var(--bg-card); border:1px solid var(--border); border-radius:8px; overflow:hidden; transition:all 0.3s; }
-  .img-grid .img-card:hover { border-color:var(--border-strong); transform:translateY(-2px); }
-  .img-grid .img-card img { width:100%; display:block; }
-  .img-card .img-cap { padding:0.4rem 0.7rem; font-size:0.8rem; color:var(--text-dim); }
 
   .summary-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
   .summary-card { text-align:center; padding:2rem 1.5rem; background:var(--bg-card); border:1px solid var(--border); border-radius:12px; transition:all 0.3s; }
-  .summary-card:hover { border-color:var(--border-strong); }
-  .summary-card .big-num { font-size:3rem; font-weight:700; color:var(--gold); margin-bottom:0.5rem; }
-  .summary-card .big-label { font-size:0.95rem; }
+  .summary-card:hover { border-color:var(--border-strong); transform:translateY(-3px); }
+  .summary-card .big-num { font-size:3.2rem; font-weight:700; color:var(--gold); margin-bottom:0.5rem; min-height:4rem; }
+  .summary-card .big-label { font-size:1rem; }
   .summary-card .big-de { font-size:0.8rem; color:var(--text-dim); font-style:italic; }
 
   #nav-dots { position:fixed; right:1.5rem; top:50%; transform:translateY(-50%); z-index:90; display:flex; flex-direction:column; gap:0.6rem; }
   #nav-dots .dot { width:10px; height:10px; border-radius:50%; border:1px solid var(--border-strong); background:transparent; cursor:pointer; transition:all 0.3s; }
-  #nav-dots .dot.active { background:var(--gold); border-color:var(--gold); }
-  #kb-hint { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%); font-size:0.75rem; color:var(--text-dim); opacity:0.6; z-index:80; }
+  #nav-dots .dot.active { background:var(--gold); border-color:var(--gold); box-shadow:0 0 8px rgba(201,168,76,0.5); }
+  #kb-hint { position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%); font-size:0.75rem; color:var(--text-dim); opacity:0.6; z-index:80; pointer-events:none; }
 
-  @media (max-width:900px) {
-    #topnav { padding:0 0.8rem; gap:0.1rem; }
-    #topnav a { font-size:0.65rem; padding:0.3rem 0.4rem; }
-    section { padding:3rem 1rem; }
-    .sec-title { font-size:1.6rem; }
-    .compare-grid,.pain-grid,.student-grid,.agent-grid,.project-grid,.summary-grid,.stats-row,.img-grid { grid-template-columns:1fr; }
-    .img-grid { grid-template-columns:1fr; }
+  /* Flip-card hint animation */
+  .flip-hint { font-size:0.75rem; color:var(--gold); opacity:0.5; text-align:center; margin-top:0.5rem; }
+
+  @media (max-width:1100px) {
+    section { padding:3rem 1.5rem; }
+    .sec-title { font-size:2rem; }
+    .flip-grid, .flip-grid.cols4, .flip-grid.cols2 { grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:768px) {
+    #topnav { padding:0 0.5rem; }
+    #topnav a { font-size:0.6rem; padding:0.25rem 0.35rem; }
+    section { padding:2.5rem 1rem; }
+    .sec-title { font-size:1.5rem; }
+    .compare-grid,.pain-grid,.student-grid,.agent-grid,.project-grid,.summary-grid,.stats-row { grid-template-columns:1fr; }
+    .flip-grid, .flip-grid.cols2, .flip-grid.cols4 { grid-template-columns:1fr; }
+    .project-grid .wide { grid-column:span 1; }
     #nav-dots { display:none; }
     .flow-row { flex-direction:column; gap:0.5rem; }
     .flow-arrow { transform:rotate(90deg); }
-    #cover h1 { font-size:2rem; }
+    #cover h1 { font-size:2.2rem; }
+    #cover .subtitle-de { font-size:1rem; }
   }
 </style>
 </head>
@@ -208,10 +280,11 @@
   <a href="#digital-human" data-section="5">数字人</a><span class="nav-sep">·</span>
   <a href="#agents" data-section="6">智能体</a><span class="nav-sep">·</span>
   <a href="#projects" data-section="7">项目作业</a><span class="nav-sep">·</span>
-  <a href="#summary" data-section="8">总结</a>
+  <a href="#av-practice" data-section="8">视听说</a><span class="nav-sep">·</span>
+  <a href="#summary" data-section="9">总结</a>
 </nav>
 <div id="nav-dots"></div>
-<div id="kb-hint">← → ↑ ↓ 键翻页 · 滚轮浏览</div>
+<div id="kb-hint">← → ↑ ↓ 翻页 · 🖱️点击翻转卡片 · 滚轮浏览</div>
 
 <!-- Cover -->
 <section id="cover">
@@ -238,31 +311,31 @@
     </div>
 
     <div class="stats-row">
-      <div class="stat-card"><div class="big">21</div><div class="lbl">学生 / Studenten</div></div>
-      <div class="stat-card"><div class="big">27,368</div><div class="lbl">页面浏览量 / PV</div></div>
-      <div class="stat-card"><div class="big">3,661</div><div class="lbl">课程活动 / Aktivitäten</div></div>
-      <div class="stat-card"><div class="big">997</div><div class="lbl">AI题库 / Fragen</div></div>
+      <div class="stat-card"><div class="big counter" data-target="21">0</div><div class="lbl">学生 / Studenten</div></div>
+      <div class="stat-card"><div class="big counter" data-target="27368">0</div><div class="lbl">页面浏览量 / PV</div></div>
+      <div class="stat-card"><div class="big counter" data-target="3661">0</div><div class="lbl">课程活动 · Aktivitäten</div></div>
+      <div class="stat-card"><div class="big counter" data-target="997">0</div><div class="lbl">AI题库 · Aufgaben</div></div>
     </div>
 
     <div class="compare-grid">
       <div class="compare-box ist">
         <h3>📋 Ist · 现状与痛点</h3>
         <ul>
-          <li>AI主要服务于教师端（备课、出题、知识图谱构建），学生直接使用率低</li>
-          <li>德语属小语种，零起点学生难以与AI有效交互，语言门槛高</li>
-          <li>课堂需要大量基础练习和即时互动，AI不够灵活，难以融入教学节奏</li>
-          <li>学情分析偏向认知维度（成绩/作业），忽视健康·情感·创新维度</li>
-          <li>偏重"解决问题"能力训练，"提出问题"能力缺乏系统性培养</li>
+          <li>AI主要服务于教师端（备课、出题、图谱），学生端使用率低</li>
+          <li>德语小语种，零起点学生难以与AI有效交互</li>
+          <li>课堂需大量即时互动，AI不够灵活，难以融入教学节奏</li>
+          <li>学情分析偏认知维度，忽视健康·情感·创新</li>
+          <li>偏重"解决问题"，"提出问题"缺乏系统训练</li>
         </ul>
       </div>
       <div class="compare-box soll">
-        <h3>🚀 Durchbruch · 已有基础与突破方向</h3>
+        <h3>🚀 Durchbruch · 已有基础</h3>
         <ul>
-          <li>✅ 知识图谱：完整课程知识体系可视化（4模块+12章节），77项章节资源</li>
-          <li>✅ AI题库：997道分级题目，覆盖Genitiv/Präteritum/Plusquamperfekt等语法点</li>
-          <li>✅ 交互式课件：多媒体学习资源整合（56图+17音频+4视频）</li>
-          <li>✅ AI视听说：学生在线练习频次高（340次/周，+126%）</li>
-          <li>📌 下一步：从"教师工具"升级为"师生共享平台"</li>
+          <li>✅ 知识图谱：完整课程体系可视化（4模块+12章节）</li>
+          <li>✅ AI题库：997道分级题（Genitiv/Präteritum等）</li>
+          <li>✅ 交互式课件：56图+17音频+4视频 = 77项资源</li>
+          <li>✅ 学情数据：340次/周↑126%，75在线↑56%</li>
+          <li>📌 目标：从教师工具 → 师生共享平台</li>
         </ul>
       </div>
     </div>
@@ -271,17 +344,17 @@
       <div class="pain-card">
         <div class="pain-icon">🧠 → 💚</div>
         <h4>学情分析偏认知</h4>
-        <p>现有分析仅关注测试成绩（6次考试/90份提交）和作业完成率，忽视情感状态、学习动机和创新思维</p>
+        <p>仅关注成绩（6次考试/90份提交），忽视情感·动机·创新思维量化</p>
       </div>
       <div class="pain-card">
         <div class="pain-icon">🔧 → 💡</div>
         <h4>创新能力不足</h4>
-        <p>课堂偏重"习得-练习-测试"循环，学生被动接受。仅有2个课堂学习活动和1个资源活动</p>
+        <p>偏重"习得-练习-测试"，仅2个课堂活动+1个资源活动</p>
       </div>
       <div class="pain-card">
         <div class="pain-icon">❓ → 🗣️</div>
         <h4>提问能力缺失</h4>
-        <p>传统教学强调"回答正确"，67次讨论参与面广（20人）但深度不足，缺乏PBL式探究</p>
+        <p>67次讨论/20人参与，覆盖广但深度不足，无PBL探究</p>
       </div>
     </div>
   </div>
@@ -297,35 +370,36 @@
     <div class="goal-card">
       <div class="goal-label">🎯 本章回答什么问题？</div>
       <div class="goal-de">Was beantwortet dieses Kapitel?</div>
-      AI课程的资源建设规模、题库结构与学生学习行为数据如何？
+      AI课程的资源建设规模、题库结构与学习数据如何？<span style="color:var(--gold);margin-left:0.5rem;">👇 点击翻转卡片查看图片</span>
     </div>
 
-    <div class="img-grid">
-      <div class="img-card">
-        <img src="imgs/01-basic-data-1.jpg" alt="课程基础数据1">
-        <div class="img-cap">课程概览 · Kursübersicht</div>
+    <div class="flip-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">📊</div><div class="q-text">课程基础数据概览</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/01-basic-data-1.jpg" alt="基础数据1"><div class="cap">课程概览 · Kursübersicht</div></div>
       </div>
-      <div class="img-card">
-        <img src="imgs/02-basic-data-2.jpg" alt="课程基础数据2">
-        <div class="img-cap">教学运营 · Lehrbetrieb</div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">📋</div><div class="q-text">教学运营数据一览</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/02-basic-data-2.jpg" alt="基础数据2"><div class="cap">教学运营 · Lehrbetrieb</div></div>
       </div>
-      <div class="img-card">
-        <img src="imgs/03-basic-data-3.jpg" alt="课程基础数据3">
-        <div class="img-cap">资源建设 · Ressourcenaufbau</div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">📦</div><div class="q-text">课程资源建设统计</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/03-basic-data-3.jpg" alt="基础数据3"><div class="cap">资源建设 · Ressourcenaufbau</div></div>
       </div>
-      <div class="img-card">
-        <img src="imgs/04-basic-data-4.jpg" alt="课程基础数据4">
-        <div class="img-cap">资源分布 · Ressourcenverteilung</div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">📈</div><div class="q-text">资源类型分布分析</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/04-basic-data-4.jpg" alt="基础数据4"><div class="cap">资源分布 · Verteilung</div></div>
       </div>
-      <div class="img-card">
-        <img src="imgs/05-course-graph.jpg" alt="课程知识图谱">
-        <div class="img-cap">知识图谱 · Wissensgraph</div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">🧠</div><div class="q-text">课程知识体系图谱</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/05-course-graph.jpg" alt="知识图谱"><div class="cap">知识图谱 · Wissensgraph</div></div>
       </div>
-      <div class="img-card">
-        <img src="imgs/06-question-bank.jpg" alt="AI题库">
-        <div class="img-cap">AI题库 · Aufgabenpool</div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">📝</div><div class="q-text">AI题库组织与分布</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/06-question-bank.jpg" alt="题库"><div class="cap">AI题库 · Aufgabenpool</div></div>
       </div>
     </div>
+    <div class="flip-hint">💡 点击任意卡片翻转查看素材图片</div>
   </div>
 </section>
 
@@ -339,65 +413,94 @@
     <div class="goal-card">
       <div class="goal-label">🎯 本章回答什么问题？</div>
       <div class="goal-de">Was beantwortet dieses Kapitel?</div>
-      学生学习行为有何规律？如何用数据驱动个性化教学？
+      学生学习行为有何规律？如何用数据驱动个性化教学？<span style="color:var(--gold);margin-left:0.5rem;">👇 点击学生卡片翻转看详情</span>
     </div>
 
     <div class="stats-row">
-      <div class="stat-card"><div class="big" style="color:var(--accent-blue)">340</div><div class="lbl">周访问 / Besuche</div><div class="lbl" style="font-size:0.7rem;color:var(--accent-green)">↑126%</div></div>
-      <div class="stat-card"><div class="big" style="color:var(--accent-teal)">75</div><div class="lbl">在线人数 / Online</div><div class="lbl" style="font-size:0.7rem;color:var(--accent-green)">↑56%</div></div>
-      <div class="stat-card"><div class="big" style="color:var(--gold)">103</div><div class="lbl">章节访问 / Kapitel</div><div class="lbl" style="font-size:0.7rem;color:var(--accent-green)">↑98%</div></div>
-      <div class="stat-card"><div class="big" style="color:var(--accent-purple)">7.4</div><div class="lbl">平均观看 / Min</div><div class="lbl" style="font-size:0.7rem;color:var(--text-dim)">最长22.8min</div></div>
+      <div class="stat-card"><div class="big counter" data-target="340" style="color:var(--accent-blue);">0</div><div class="lbl">周学习访问 / Woche</div><div class="trend up">↑126%</div></div>
+      <div class="stat-card"><div class="big counter" data-target="75" style="color:var(--accent-teal);">0</div><div class="lbl">在线人数 / Online</div><div class="trend up">↑56%</div></div>
+      <div class="stat-card"><div class="big counter" data-target="103" style="color:var(--gold);">0</div><div class="lbl">章节访问 / Kapitel</div><div class="trend up">↑98%</div></div>
+      <div class="stat-card"><div class="big" style="color:var(--accent-purple);">7.4</div><div class="lbl">平均观看时长</div><div class="trend" style="color:var(--text-dim);font-size:0.7rem;">最长22.8min</div></div>
     </div>
 
     <div class="student-grid">
-      <div class="student-card s1">
-        <div class="pct">38%</div>
-        <div class="label">勤奋跟随者</div>
-        <div class="label-de">Fleißige Mitläufer</div>
-        <div class="traits">按时完成任务，课堂跟随度高，平均完成3个任务</div>
+      <div class="student-card s1" onclick="this.classList.toggle('flipped')">
+        <div class="face front">
+          <div class="pct">38%</div>
+          <div class="label">勤奋跟随者</div>
+          <div class="label-de">Fleißige Mitläufer</div>
+          <div style="font-size:0.75rem;color:var(--gold);opacity:0.6;">点击翻转 →</div>
+        </div>
+        <div class="face back">
+          <div class="bt">📌 画像描述</div>
+          <div class="bd">按时完成任务，课堂跟随度高，平均完成3个任务。成绩稳定性高(r=0.71)。需AI推送拓展内容延伸学习。</div>
+          <div class="bq">"老师布置什么我就做什么"</div>
+        </div>
       </div>
-      <div class="student-card s2">
-        <div class="pct">22%</div>
-        <div class="label">主动探索者</div>
-        <div class="label-de">Aktive Entdecker</div>
-        <div class="traits">自主使用AI工具，最快完成9个任务，乐于尝试新方法</div>
+      <div class="student-card s2" onclick="this.classList.toggle('flipped')">
+        <div class="face front">
+          <div class="pct">22%</div>
+          <div class="label">主动探索者</div>
+          <div class="label-de">Aktive Entdecker</div>
+          <div style="font-size:0.75rem;color:var(--gold);opacity:0.6;">点击翻转 →</div>
+        </div>
+        <div class="face back">
+          <div class="bt">📌 画像描述</div>
+          <div class="bd">自主学习AI工具，最快完成9个任务。创新产出与AI使用相关性r=0.63。适合高阶项目挑战。</div>
+          <div class="bq">"我再试试AI还能做什么"</div>
+        </div>
       </div>
-      <div class="student-card s3">
-        <div class="pct">25%</div>
-        <div class="label">基础薄弱者</div>
-        <div class="label-de">Lernschwächere</div>
-        <div class="traits">语言基础弱，AI使用信心不足，需自适应练习</div>
+      <div class="student-card s3" onclick="this.classList.toggle('flipped')">
+        <div class="face front">
+          <div class="pct">25%</div>
+          <div class="label">基础薄弱者</div>
+          <div class="label-de">Lernschwächere</div>
+          <div style="font-size:0.75rem;color:var(--gold);opacity:0.6;">点击翻转 →</div>
+        </div>
+        <div class="face back">
+          <div class="bt">📌 画像描述</div>
+          <div class="bd">语言基础弱，AI使用信心不足。学习时长低于平均(7.4min)。需AI自适应练习+即时正向反馈。</div>
+          <div class="bq">"德语好难，AI说的我听不懂"</div>
+        </div>
       </div>
-      <div class="student-card s4">
-        <div class="pct">15%</div>
-        <div class="label">间歇参与者</div>
-        <div class="label-de">Unregelmäßige</div>
-        <div class="traits">参与波动大，0任务完成，需AI督学提醒</div>
+      <div class="student-card s4" onclick="this.classList.toggle('flipped')">
+        <div class="face front">
+          <div class="pct">15%</div>
+          <div class="label">间歇参与者</div>
+          <div class="label-de">Unregelmäßige</div>
+          <div style="font-size:0.75rem;color:var(--gold);opacity:0.6;">点击翻转 →</div>
+        </div>
+        <div class="face back">
+          <div class="bt">📌 画像描述</div>
+          <div class="bd">参与波动大，0任务完成，最长观看0分钟。退课风险高。需AI督学提醒+碎片化微内容。</div>
+          <div class="bq">"下次一定看"</div>
+        </div>
       </div>
     </div>
 
-    <div class="img-grid" style="margin-top:1.5rem;">
-      <div class="img-card">
-        <img src="imgs/16-learning-analytics-1.jpg" alt="学情统计1">
-        <div class="img-cap">学习活动热力图 · Lernaktivitäten</div>
+    <div class="flip-grid cols2" style="margin-top:1.5rem;">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">📉</div><div class="q-text">学习热力图与活动监测</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/16-learning-analytics-1.jpg" alt="学情1"><div class="cap">学习热力图 · Aktivitäten</div></div>
       </div>
-      <div class="img-card">
-        <img src="imgs/17-learning-analytics-2.jpg" alt="学情统计2">
-        <div class="img-cap">作业与考试 · Aufgaben & Prüfungen</div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">📋</div><div class="q-text">作业与考试提交数据</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/17-learning-analytics-2.jpg" alt="学情2"><div class="cap">作业考试 · Prüfungen</div></div>
       </div>
-      <div class="img-card">
-        <img src="imgs/18-learning-analytics-3.jpg" alt="学情统计3">
-        <div class="img-cap">学习频率 · Lernfrequenz</div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">📊</div><div class="q-text">学习频率与章节访问</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/18-learning-analytics-3.jpg" alt="学情3"><div class="cap">学习频率 · Frequenz</div></div>
       </div>
-      <div class="img-card">
-        <img src="imgs/19-learning-analytics-4.jpg" alt="学情统计4">
-        <div class="img-cap">进度完成 · Fortschritt</div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">📈</div><div class="q-text">进度完成与成绩分析</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/19-learning-analytics-4.jpg" alt="学情4"><div class="cap">进度完成 · Fortschritt</div></div>
       </div>
-      <div class="img-card">
-        <img src="imgs/15-class-report.jpg" alt="课堂报告">
-        <div class="img-cap">课堂报告 · Unterrichtsbericht</div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">🏆</div><div class="q-text">课堂报告与Top10表现</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/15-class-report.jpg" alt="课堂报告"><div class="cap">课堂报告 · Bericht</div></div>
       </div>
     </div>
+    <div class="flip-hint">💡 点击翻转学生卡和图片卡查看更多数据</div>
   </div>
 </section>
 
@@ -425,25 +528,26 @@
     </div>
 
     <table class="syllabus-table">
-      <thead><tr><th style="width:12%">单元</th><th>主题</th><th style="width:22%">AI嵌入方法</th></tr></thead>
+      <thead><tr><th style="width:12%">单元</th><th>主题</th><th style="width:24%">AI嵌入方法</th></tr></thead>
       <tbody>
-        <tr><td>L1</td><td>Essen & Trinken 饮食 — 点餐、食材、饮食习惯</td><td class="ai-badge">AI情境对话·菜单生成·发音评测</td></tr>
-        <tr><td>L2</td><td>Freizeit & Hobbys 休闲 — 活动、邀请、时间表达</td><td class="ai-badge">AI角色扮演·日程助手·语法纠错</td></tr>
-        <tr><td>L3</td><td>Wohnen & Stadt 居住与城市 — 房屋描述、方位</td><td class="ai-badge">AI地图对话·租房模拟·词汇扩展</td></tr>
-        <tr><td>L4</td><td>Reisen & Kultur 旅行与文化 — 预订、景点介绍</td><td class="ai-badge">AI旅行规划·文化对比·报告生成</td></tr>
+        <tr><td>L1</td><td>Essen & Trinken 饮食</td><td class="ai-badge">AI情境对话·菜单生成·发音评测</td></tr>
+        <tr><td>L2</td><td>Freizeit & Hobbys 休闲</td><td class="ai-badge">AI角色扮演·日程助手·语法纠错</td></tr>
+        <tr><td>L3</td><td>Wohnen & Stadt 居住城市</td><td class="ai-badge">AI地图对话·租房模拟·词汇扩展</td></tr>
+        <tr><td>L4</td><td>Reisen & Kultur 旅行文化</td><td class="ai-badge">AI旅行规划·文化对比·报告生成</td></tr>
       </tbody>
     </table>
 
-    <div class="img-grid" style="margin-top:1.5rem;">
-      <div class="img-card">
-        <img src="imgs/13-interactive-courseware-1.jpg" alt="交互式课件1">
-        <div class="img-cap">AI交互式课件 · Interaktives KI-Material</div>
+    <div class="flip-grid cols2" style="margin-top:1.5rem;">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">📖</div><div class="q-text">AI交互式课件界面演示</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/13-interactive-courseware-1.jpg" alt="课件1"><div class="cap">AI交互式课件 · Kursmaterial</div></div>
       </div>
-      <div class="img-card">
-        <img src="imgs/14-interactive-courseware-2.jpg" alt="交互式课件2">
-        <div class="img-cap">课件交互界面 · Benutzeroberfläche</div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">🎯</div><div class="q-text">课件交互功能展示</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/14-interactive-courseware-2.jpg" alt="课件2"><div class="cap">交互界面 · Interaktion</div></div>
       </div>
     </div>
+    <div class="flip-hint">💡 点击翻转查看交互式课件截图</div>
   </div>
 </section>
 
@@ -459,34 +563,33 @@
       <div class="goal-de">Was beantwortet dieses Kapitel?</div>
       AI讲师如何为零起点学生提供标准化发音参考与课后自主学习支持？
     </div>
-
     <div class="compare-grid">
       <div class="compare-box" style="border-top-color:var(--accent-purple);background:rgba(155,126,196,0.06);">
         <h3 style="color:var(--accent-purple);">🎙️ 核心定位</h3>
         <ul>
           <li>零起点学生标准发音参考（替代教师重复示范）</li>
-          <li>24/7课后自主学习支持，不限次数回看</li>
-          <li>统一发音标准，覆盖17组音频训练素材</li>
+          <li>24/7课后自主复习，不限次数回看</li>
+          <li>覆盖17组音频训练素材，统一发音标准</li>
         </ul>
         <div class="flow-row" style="margin-top:1rem;justify-content:flex-start;">
           <div class="flow-step" style="min-width:100px;"><div class="step-icon">📝</div><div class="step-label">讲稿生成</div></div>
-          <div class="flow-arrow">→</div>
+          <div class="flow-arrow" style="font-size:1rem;">→</div>
           <div class="flow-step" style="min-width:100px;"><div class="step-icon">👄</div><div class="step-label">口型合成</div></div>
-          <div class="flow-arrow">→</div>
+          <div class="flow-arrow" style="font-size:1rem;">→</div>
           <div class="flow-step" style="min-width:100px;"><div class="step-icon">✅</div><div class="step-label">教师校准</div></div>
-          <div class="flow-arrow">→</div>
+          <div class="flow-arrow" style="font-size:1rem;">→</div>
           <div class="flow-step" style="min-width:100px;"><div class="step-icon">📤</div><div class="step-label">发布</div></div>
         </div>
       </div>
       <div class="compare-box" style="border-top-color:var(--gold);background:rgba(201,168,76,0.06);">
         <h3 style="color:var(--gold);">🎧 发音训练（子模块）</h3>
         <ul>
-          <li>听标准发音 → 慢速跟读 → AI评测打分 → 针对性纠正</li>
-          <li>重点攻克ö/ü/ä元音、ch/r辅音、长短音辨析</li>
-          <li>基于学生发音错误库，生成个性化纠音练习</li>
+          <li>听 → 慢速跟读 → AI评测打分 → 针对性纠音</li>
+          <li>重点攻克ö/ü/ä元音、ch/r辅音、长短音</li>
+          <li>基于错误库生成个性化纠音练习</li>
         </ul>
-        <div style="font-size:0.8rem;color:var(--text-dim);margin-top:1rem;">
-          提示词示例：A1级别餐厅点餐对话，含ä/ö/ü高频词，语速70词/分钟，每句留2秒跟读间隔
+        <div style="font-size:0.85rem;color:var(--text-dim);margin-top:1rem;background:var(--bg-card);padding:0.8rem 1rem;border-radius:8px;border:1px solid var(--border);">
+          💬 提示词示例：生成A1级别餐厅点餐对话，含ä/ö/ü高频词，语速70词/分，每句留2秒跟读间隔
         </div>
       </div>
     </div>
@@ -505,7 +608,6 @@
       <div class="goal-de">Was beantwortet dieses Kapitel?</div>
       不同类型的AI智能体如何分工协作，覆盖教学全场景？
     </div>
-
     <div class="agent-grid">
       <div class="agent-card a1">
         <div class="agent-icon">📚</div>
@@ -513,34 +615,31 @@
         <h4>助教智能体</h4>
         <div class="agent-de">KI-Tutor · 答疑辅导</div>
         <ul class="agent-items">
-          <li>基于997道题库+知识图谱的RAG检索增强问答</li>
-          <li>语法规则解释（Genitiv/Präteritum等）+例句生成</li>
-          <li>77项章节资源索引，学生提问自动归类</li>
-          <li>自动出题：6次考试/90份提交量，难易分级</li>
+          <li>基于997题库+知识图谱的RAG检索增强问答</li>
+          <li>语法解释（Genitiv/Präteritum）+例句生成</li>
+          <li>77项资源索引，自动出题6次/90份提交</li>
         </ul>
       </div>
       <div class="agent-card a2">
         <div class="agent-icon">🎯</div>
-        <div class="agent-tag">评价标准 · Bewertungskriterien</div>
+        <div class="agent-tag">评价标准 · Bewertung</div>
         <h4>学伴智能体</h4>
-        <div class="agent-de">KI-Lernpartner · 学习评价</div>
+        <div class="agent-de">KI-Lernpartner · 评价</div>
         <ul class="agent-items">
           <li>CEFR四维评分卡：词汇/语法/流畅度/发音</li>
-          <li>1次大作业+14份提交，AI自动批改+逐句润色</li>
-          <li>67次讨论参与质量评估与个性化学习路径推荐</li>
-          <li>进度追踪：最快9任务 vs 0任务的差异化督学</li>
+          <li>大作业自动批改+67次讨论质量评估</li>
+          <li>最快9任务 vs 0任务的差异化督学路径</li>
         </ul>
       </div>
       <div class="agent-card a3">
         <div class="agent-icon">⚙️</div>
         <div class="agent-tag">工作流 · Workflow</div>
         <h4>功能智能体</h4>
-        <div class="agent-de">KI-Funktionsagent · 场景工具</div>
+        <div class="agent-de">KI-Funktionsagent</div>
         <ul class="agent-items">
-          <li>自动出题：997题难度分级+题型多样+反作弊</li>
-          <li>课件生成：77项资源→结构化→交互式课件</li>
-          <li>数据汇总：日活/周报自动生成→教学建议</li>
-          <li>学情预警：基于340次/周访问量的学习行为分析</li>
+          <li>自动出题：997题分级+题型多样+反作弊</li>
+          <li>课件生成：77项资源→交互式课件</li>
+          <li>日活/周报自动生成，340次/周行为分析</li>
         </ul>
       </div>
     </div>
@@ -557,62 +656,95 @@
     <div class="goal-card">
       <div class="goal-label">🎯 本章回答什么问题？</div>
       <div class="goal-de">Was beantwortet dieses Kapitel?</div>
-      如何从"解决问题"转向"提出问题"？摆脱PPT展示，产出可视化成果？
+      如何从"解决问题"转向"提出问题"，产出非PPT可视化成果？
     </div>
-
     <div class="project-grid">
       <div class="project-card">
         <h4>🍽️ P1: 柏林餐厅指南</h4>
         <div class="pj-de">Berliner Restaurantführer</div>
         <div class="pj-visual">📊 数据洞察仪表盘</div>
-        <p style="font-size:0.9rem;color:var(--text-dim);">提出"如何用数据选最佳德式餐厅"？收集柏林餐厅数据→AI情感分析→德语发布交互式仪表盘</p>
+        <p style="font-size:0.95rem;color:var(--text-dim);">提出"如何用数据选择最佳德式餐厅"→爬取数据→AI情感分析→德语交互仪表盘</p>
         <div class="progress-steps">
-          <div class="ps active">❓提问</div><span class="arr">→</span><div class="ps active">📥收集</div><span class="arr">→</span><div class="ps active">🤖AI分析</div><span class="arr">→</span><div class="ps">🇩🇪表达</div><span class="arr">→</span><div class="ps">📊可视化</div><span class="arr">→</span><div class="ps">👥评审</div>
+          <div class="ps">❓提问</div><span class="arr">→</span>
+          <div class="ps">📥收集</div><span class="arr">→</span>
+          <div class="ps">🤖AI分析</div><span class="arr">→</span>
+          <div class="ps">🇩🇪表达</div><span class="arr">→</span>
+          <div class="ps">📊可视化</div><span class="arr">→</span>
+          <div class="ps">👥评审</div>
         </div>
       </div>
       <div class="project-card">
         <h4>🎬 P2: 我的德语Vlog</h4>
         <div class="pj-de">Mein Deutsch-Vlog</div>
         <div class="pj-visual">🎥 多媒体纪录片</div>
-        <p style="font-size:0.9rem;color:var(--text-dim);">提出"中国学生学德语的故事"→AI脚本框架→拍摄剪辑→AI字幕+发音评测→5分钟纪录片</p>
+        <p style="font-size:0.95rem;color:var(--text-dim);">"中国学生学德语"→AI脚本→拍摄→AI字幕+发音评测→5分钟纪录片</p>
         <div class="progress-steps">
-          <div class="ps active">❓提问</div><span class="arr">→</span><div class="ps">📝脚本</div><span class="arr">→</span><div class="ps">🎬拍摄</div><span class="arr">→</span><div class="ps">🤖AI字幕</div><span class="arr">→</span><div class="ps">🇩🇪配音</div><span class="arr">→</span><div class="ps">👥评审</div>
+          <div class="ps">❓提问</div><span class="arr">→</span>
+          <div class="ps">📝脚本</div><span class="arr">→</span>
+          <div class="ps">🎬拍摄</div><span class="arr">→</span>
+          <div class="ps">🤖AI字幕</div><span class="arr">→</span>
+          <div class="ps">🇩🇪配音</div><span class="arr">→</span>
+          <div class="ps">👥评审</div>
         </div>
       </div>
       <div class="project-card wide">
         <h4>🏙️ P3: 中德城市对比孪生</h4>
         <div class="pj-de">Städtevergleich China-Deutschland</div>
         <div class="pj-visual">🏗️ 数字孪生模型</div>
-        <p style="font-size:0.9rem;color:var(--text-dim);">广州vs柏林：哪个更适合年轻人？→收集交通/房价/文化数据→AI多维度对比→德语数字孪生模型</p>
+        <p style="font-size:0.95rem;color:var(--text-dim);">广州vs柏林：哪个更适合年轻人？→收集交通/房价/文化数据→AI多维分析→德语数字孪生</p>
         <div class="progress-steps">
-          <div class="ps active">❓提问</div><span class="arr">→</span><div class="ps">📥数据</div><span class="arr">→</span><div class="ps">🤖AI分析</div><span class="arr">→</span><div class="ps">🇩🇪报告</div><span class="arr">→</span><div class="ps">🏗️建模</div><span class="arr">→</span><div class="ps">👥评审</div>
+          <div class="ps">❓提问</div><span class="arr">→</span>
+          <div class="ps">📥数据</div><span class="arr">→</span>
+          <div class="ps">🤖AI分析</div><span class="arr">→</span>
+          <div class="ps">🇩🇪报告</div><span class="arr">→</span>
+          <div class="ps">🏗️建模</div><span class="arr">→</span>
+          <div class="ps">👥评审</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 8. AV Practice & Report -->
+<!-- 8. AV Practice -->
 <section id="av-practice">
-<div class="section-inner" style="max-width:1100px;width:100%;position:relative;z-index:1;">
-  <div class="sec-num">Kapitel 8</div>
-  <div class="sec-title">AI视听说练习</div>
-  <div class="sec-title-de">KI-gestütztes Hör-Seh-Training</div>
-  <div class="sec-divider"></div>
-  <div class="goal-card">
-    <div class="goal-label">🎯 展示内容</div>
-    <div class="goal-de">Präsentationsinhalte</div>
-    AI智能视听说练习系统，支持语音识别、跟读评测与情境对话
+  <div class="section-inner">
+    <div class="sec-num">Kapitel 8</div>
+    <div class="sec-title">AI视听说练习</div>
+    <div class="sec-title-de">KI-gestütztes Hör-Seh-Training</div>
+    <div class="sec-divider"></div>
+    <div class="goal-card">
+      <div class="goal-label">🎯 展示内容</div>
+      <div class="goal-de">Präsentationsinhalte</div>
+      AI智能视听说练习系统 — 点击卡片翻转查看各功能界面
+    </div>
+    <div class="flip-grid cols2">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">🎧</div><div class="q-text">AI视听说主界面</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/07-ai-av-1.jpg" alt="AI视听说1"><div class="cap">主界面 · Hauptschnittstelle</div></div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">👂</div><div class="q-text">听力练习界面</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/08-ai-av-2.jpg" alt="AI视听说2"><div class="cap">听力 · Hörverstehen</div></div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">🎤</div><div class="q-text">跟读评测功能</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/09-ai-av-3.jpg" alt="AI视听说3"><div class="cap">跟读 · Nachsprechen</div></div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">💬</div><div class="q-text">情境对话练习</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/10-ai-av-4.jpg" alt="AI视听说4"><div class="cap">对话 · Dialog</div></div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">🔊</div><div class="q-text">发音分析报告</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/11-ai-av-5.jpg" alt="AI视听说5"><div class="cap">发音 · Aussprache</div></div>
+      </div>
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="face front"><div class="q-icon">📋</div><div class="q-text">学习反馈数据</div><div class="q-hint">点击翻转 →</div></div>
+        <div class="face back"><img src="imgs/12-ai-av-6.jpg" alt="AI视听说6"><div class="cap">反馈 · Feedback</div></div>
+      </div>
+    </div>
+    <div class="flip-hint">💡 点击翻转浏览6个AI视听说练习界面</div>
   </div>
-  <div class="img-grid">
-    <div class="img-card"><img src="imgs/07-ai-av-1.jpg" alt="AI视听说1"><div class="img-cap">AI视听说主界面</div></div>
-    <div class="img-card"><img src="imgs/08-ai-av-2.jpg" alt="AI视听说2"><div class="img-cap">听力练习界面</div></div>
-    <div class="img-card"><img src="imgs/09-ai-av-3.jpg" alt="AI视听说3"><div class="img-cap">跟读评测</div></div>
-    <div class="img-card"><img src="imgs/10-ai-av-4.jpg" alt="AI视听说4"><div class="img-cap">情境对话</div></div>
-    <div class="img-card"><img src="imgs/11-ai-av-5.jpg" alt="AI视听说5"><div class="img-cap">发音分析</div></div>
-    <div class="img-card"><img src="imgs/12-ai-av-6.jpg" alt="AI视听说6"><div class="img-cap">学习反馈</div></div>
-  </div>
-</div>
 </section>
 
 <!-- 9. Summary -->
@@ -625,27 +757,26 @@
     <div class="goal-card">
       <div class="goal-label">🎯 核心结论</div>
       <div class="goal-de">Kernerkenntnisse</div>
-      AI技术在基础德语教学中已初步建立"资源+数据+工具"底座，下一步攻克"学生端深度使用"难关
+      AI技术在基础德语教学中已建立"资源+数据+工具"底座，下一步攻克学生端深度使用
     </div>
-
     <div class="summary-grid">
       <div class="summary-card">
-        <div class="big-num">997</div>
+        <div class="big-num counter" data-target="997">0</div>
         <div class="big-label">AI题库已建成</div>
         <div class="big-de">KI-Aufgabenpool</div>
-        <p style="font-size:0.85rem;color:var(--text-dim);margin-top:0.5rem;">覆盖4模块12章节，支持自动出题与难度分级</p>
+        <p style="font-size:0.9rem;color:var(--text-dim);margin-top:0.5rem;">覆盖4模块12章节，自动出题+难度分级</p>
       </div>
       <div class="summary-card">
-        <div class="big-num">77</div>
+        <div class="big-num counter" data-target="77">0</div>
         <div class="big-label">教学资源整合</div>
-        <div class="big-de">Lernressourcen</div>
-        <p style="font-size:0.85rem;color:var(--text-dim);margin-top:0.5rem;">56张图+17音频+4视频，交互式课件已落地</p>
+        <div class="big-de">Ressourcen</div>
+        <p style="font-size:0.9rem;color:var(--text-dim);margin-top:0.5rem;">56图+17音频+4视频，交互式课件落地</p>
       </div>
       <div class="summary-card">
-        <div class="big-num">27K</div>
+        <div class="big-num counter" data-target="27">0K+</div>
         <div class="big-label">页面浏览量</div>
         <div class="big-de">Seitenaufrufe</div>
-        <p style="font-size:0.85rem;color:var(--text-dim);margin-top:0.5rem;">周增长126%，学生活跃度持续提升中</p>
+        <p style="font-size:0.9rem;color:var(--text-dim);margin-top:0.5rem;">周增长126%，活跃度持续提升</p>
       </div>
     </div>
 
@@ -654,18 +785,18 @@
         <h3 style="color:var(--gold);">✅ 核心成果</h3>
         <ul>
           <li>完成基础德语2全课程AI+升级（4单元×多样AI嵌入）</li>
-          <li>建立「人机协同」内容生成流程，AI草稿→教师审核→24h迭代</li>
-          <li>997道AI题库+77项资源+知识图谱三套件就位</li>
+          <li>「人机协同」内容流程：AI草稿→教师审核→24h迭代</li>
+          <li>997道AI题库+77项资源+知识图谱三件套就位</li>
           <li>27,368次页面浏览，21名学生全覆盖</li>
         </ul>
       </div>
       <div class="compare-box" style="border-top-color:var(--accent-blue);background:rgba(91,155,213,0.06);">
         <h3 style="color:var(--accent-blue);">🔭 下一步计划</h3>
         <ul>
-          <li>学生端AI工具渗透率提升：从教师工具→师生共享平台</li>
+          <li>学生端AI渗透率提升：教师工具→师生共享平台</li>
           <li>数字人微视频覆盖全部4单元核心知识点</li>
-          <li>PBL项目成果纳入课程考核（占比30%），摆脱PPT展示</li>
-          <li>学情分析从认知→健康·情感·创新三维扩展</li>
+          <li>PBL项目成果纳入考核（占比30%），摆脱PPT展示</li>
+          <li>学情从认知→健康·情感·创新三维扩展</li>
           <li>跨课程推广：基础德语1→基础德语2→基础德语3</li>
         </ul>
       </div>
@@ -674,6 +805,7 @@
 </section>
 
 <script>
+// Section tracking
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('#topnav a');
 const dotsContainer = document.getElementById('nav-dots');
@@ -697,7 +829,6 @@ function updateActive() {
   if (dots[current]) dots[current].classList.add('active');
 }
 window.addEventListener('scroll', updateActive, {passive:true});
-
 let currentSection = 0;
 function scrollToSection(i) {
   if (i >= 0 && i < sections.length) { currentSection = i; sections[i].scrollIntoView({behavior:'smooth'}); }
@@ -709,21 +840,48 @@ document.addEventListener('keydown', e => {
 window.addEventListener('scroll', () => {
   sections.forEach((s, i) => { if (s.getBoundingClientRect().top <= window.innerHeight * 0.5) currentSection = i; });
 });
-
 navLinks.forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({behavior:'smooth'});
-  });
+  a.addEventListener('click', e => { e.preventDefault(); const t = document.querySelector(a.getAttribute('href')); if (t) t.scrollIntoView({behavior:'smooth'}); });
 });
+document.addEventListener('keydown', function hide() { document.getElementById('kb-hint').style.opacity = '0'; }, {once:true});
 
-document.addEventListener('keydown', function hide() {
-  document.getElementById('kb-hint').style.opacity = '0';
-},{once:true});
+// Animated counters
+let countersAnimated = false;
+function animateCounters() {
+  if (countersAnimated) return;
+  const els = document.querySelectorAll('.counter');
+  els.forEach(el => {
+    const target = parseInt(el.dataset.target);
+    if (!target) return;
+    const isK = el.textContent.includes('K+');
+    const duration = 1500;
+    const start = performance.now();
+    function update(now) {
+      const pct = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - pct, 3);
+      const val = Math.round(eased * target);
+      el.textContent = isK ? val + 'K+' : val.toLocaleString();
+      if (pct < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+  countersAnimated = true;
+}
+
+// Trigger counters on first scroll past diagnosis
+let countersTriggered = false;
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !countersTriggered) {
+      animateCounters();
+      countersTriggered = true;
+    }
+  });
+}, { threshold: 0.3 });
+const diagnosisSection = document.getElementById('diagnosis');
+if (diagnosisSection) observer.observe(diagnosisSection);
 
 updateActive();
 </script>
-
 </body>
 </html>
